@@ -1,25 +1,34 @@
 import Sequelize, { Model } from 'sequelize';
 
 class Product extends Model {
-    static init(sequelize){
+    static init(sequelize) {
         super.init(
             {
-            name: Sequelize.STRING,
-            price: Sequelize.INTEGER,
-            category: Sequelize.STRING,
-            path: Sequelize.STRING,
-            url: {
-                type: Sequelize.VIRTUAL,
-                get(){
-                    return `http://localhost:3001/product-file/${this.path}`
+                name: Sequelize.STRING,
+                price: Sequelize.INTEGER,
+
+                path: Sequelize.STRING,
+                url: {
+                    type: Sequelize.VIRTUAL,
+                    get() {
+                        return `http://localhost:3001/product-file/${this.path}`
+                    }
                 }
-            }
-        },
-        {
-            sequelize,
-            tableName: 'products',
-        },
-    );
+            },
+            {
+                sequelize,
+                tableName: 'products',
+            },
+        );
+
+        return this;
+    }
+
+    static associate(Models) {
+        this.belongsTo(Models.Category, {
+            foreignKey: 'category_id', 
+            as: 'category',
+        });
     }
 }
 

@@ -13,6 +13,8 @@ class User extends Model {
                 tableName: 'users',
             },
         );
+
+        return this;
     }
 }
 

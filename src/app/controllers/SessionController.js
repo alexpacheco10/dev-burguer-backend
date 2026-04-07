@@ -40,7 +40,7 @@ class SessionController {
         }
 
         const token = jwt.sign(
-            { id: existingUser.id }, authConfig.secret, {
+            { id: existingUser.id, admin: existingUser.admin }, authConfig.secret, {
             expiresIn: authConfig.expiresIn,
         });
 

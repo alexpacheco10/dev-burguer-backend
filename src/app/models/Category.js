@@ -1,17 +1,19 @@
 import Sequelize, { Model } from 'sequelize';
 
 class Category extends Model {
-    static init(sequelize){
+    static init(sequelize) {
         super.init(
             {
-            name: Sequelize.STRING,
-     
-        },
-        {
-            sequelize,
-            tableName: 'categories',
-        },
-    );
+                name: Sequelize.STRING,
+
+            },
+            {
+                sequelize,
+                tableName: 'categories',
+            },
+        );
+
+        return this;
     }
 }
 
